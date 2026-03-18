@@ -1,0 +1,938 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Adesokan Properties — Otedola Estate & Omole</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --black: #0a0906;
+    --deep: #111009;
+    --surface: #16140f;
+    --gold: #c9a84c;
+    --gold-light: #e2c97e;
+    --gold-dim: rgba(201,168,76,0.15);
+    --cream: #f0ebe0;
+    --cream-dim: rgba(240,235,224,0.55);
+    --muted: rgba(240,235,224,0.35);
+    --border: rgba(201,168,76,0.18);
+    --serif: 'Cormorant Garamond', Georgia, serif;
+    --sans: 'DM Sans', system-ui, sans-serif;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--black);
+    color: var(--cream);
+    font-family: var(--sans);
+    font-weight: 300;
+    overflow-x: hidden;
+  }
+
+  /* ── NAV ── */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 1.4rem 3rem;
+    background: linear-gradient(to bottom, rgba(10,9,6,0.95), transparent);
+    backdrop-filter: blur(4px);
+  }
+  .logo {
+    display: flex; flex-direction: column; gap: 1px;
+  }
+  .logo-main {
+    font-family: var(--serif);
+    font-size: 18px; font-weight: 600; letter-spacing: 0.06em;
+    color: var(--cream);
+  }
+  .logo-sub {
+    font-size: 9px; letter-spacing: 0.22em; color: var(--gold);
+    text-transform: uppercase; font-weight: 400;
+  }
+  .nav-links {
+    display: flex; gap: 2.2rem; list-style: none;
+  }
+  .nav-links a {
+    font-size: 12px; letter-spacing: 0.12em; text-transform: uppercase;
+    color: var(--cream-dim); text-decoration: none; font-weight: 400;
+    transition: color 0.2s;
+  }
+  .nav-links a:hover { color: var(--gold); }
+  .nav-cta {
+    font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase;
+    border: 1px solid var(--gold); color: var(--gold); padding: 8px 20px;
+    background: transparent; cursor: pointer; font-family: var(--sans);
+    transition: all 0.2s; text-decoration: none;
+  }
+  .nav-cta:hover { background: var(--gold); color: var(--black); }
+
+  /* ── HERO ── */
+  .hero {
+    min-height: 100vh;
+    display: flex; flex-direction: column; justify-content: flex-end;
+    padding: 0 3rem 5rem;
+    position: relative; overflow: hidden;
+  }
+  .hero-bg {
+    position: absolute; inset: 0;
+    background:
+      linear-gradient(160deg, rgba(10,9,6,0.3) 0%, rgba(10,9,6,0.85) 60%, rgba(10,9,6,0.97) 100%),
+      linear-gradient(135deg, #1a1510 0%, #2a2018 30%, #1a1208 60%, #0f0c06 100%);
+  }
+  .hero-pattern {
+    position: absolute; inset: 0; opacity: 0.04;
+    background-image:
+      linear-gradient(rgba(201,168,76,0.8) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(201,168,76,0.8) 1px, transparent 1px);
+    background-size: 60px 60px;
+  }
+  .hero-img-block {
+    position: absolute; top: 0; right: 0;
+    width: 52%; height: 100%;
+    background: linear-gradient(135deg, #2a2218 0%, #1e1810 40%, #282010 100%);
+    clip-path: polygon(8% 0, 100% 0, 100% 100%, 0% 100%);
+    overflow: hidden;
+  }
+  .hero-img-block::before {
+    content: '';
+    position: absolute; inset: 0;
+    background:
+      radial-gradient(ellipse at 70% 40%, rgba(201,168,76,0.08) 0%, transparent 60%),
+      linear-gradient(180deg, rgba(10,9,6,0.2) 0%, rgba(10,9,6,0.5) 100%);
+  }
+  /* Simulated building silhouette */
+  .hero-img-block::after {
+    content: '';
+    position: absolute; bottom: 0; left: 10%; right: 0;
+    height: 75%;
+    background:
+      linear-gradient(180deg, transparent 0%, rgba(26,20,12,0.4) 100%);
+    clip-path: polygon(
+      5% 100%, 5% 45%, 10% 45%, 10% 30%, 20% 30%, 20% 45%, 22% 45%, 22% 15%,
+      28% 15%, 28% 10%, 34% 10%, 34% 15%, 40% 15%, 40% 35%, 42% 35%, 42% 20%,
+      52% 20%, 52% 35%, 55% 35%, 55% 40%, 62% 40%, 62% 25%, 70% 25%, 70% 40%,
+      75% 40%, 75% 55%, 82% 55%, 82% 35%, 90% 35%, 90% 55%, 95% 55%, 95% 100%
+    );
+    background: rgba(201,168,76,0.06);
+    border-top: 1px solid rgba(201,168,76,0.12);
+  }
+
+  .hero-eyebrow {
+    position: relative; z-index: 2;
+    display: flex; align-items: center; gap: 14px;
+    margin-bottom: 1.4rem;
+    animation: fadeUp 0.8s ease both;
+  }
+  .hero-eyebrow-line {
+    width: 36px; height: 1px; background: var(--gold);
+  }
+  .hero-eyebrow-text {
+    font-size: 10px; letter-spacing: 0.28em; text-transform: uppercase;
+    color: var(--gold); font-weight: 400;
+  }
+  h1 {
+    position: relative; z-index: 2;
+    font-family: var(--serif); font-weight: 300;
+    font-size: clamp(44px, 6vw, 76px);
+    line-height: 1.05; letter-spacing: -0.01em;
+    color: var(--cream); max-width: 620px;
+    animation: fadeUp 0.8s 0.1s ease both;
+  }
+  h1 em { font-style: italic; color: var(--gold-light); }
+  .hero-sub {
+    position: relative; z-index: 2;
+    margin-top: 1.6rem;
+    font-size: 15px; line-height: 1.7; color: var(--cream-dim);
+    max-width: 440px;
+    animation: fadeUp 0.8s 0.2s ease both;
+  }
+  .hero-actions {
+    position: relative; z-index: 2;
+    display: flex; gap: 1rem; margin-top: 2.4rem; flex-wrap: wrap;
+    animation: fadeUp 0.8s 0.3s ease both;
+  }
+  .btn-primary {
+    background: var(--gold); color: var(--black);
+    padding: 14px 32px; font-size: 11px; letter-spacing: 0.16em;
+    text-transform: uppercase; font-weight: 500; border: none; cursor: pointer;
+    font-family: var(--sans); transition: all 0.2s; text-decoration: none;
+    display: inline-block;
+  }
+  .btn-primary:hover { background: var(--gold-light); }
+  .btn-ghost {
+    background: transparent; color: var(--cream);
+    padding: 14px 32px; font-size: 11px; letter-spacing: 0.16em;
+    text-transform: uppercase; font-weight: 400; border: 1px solid rgba(240,235,224,0.25);
+    cursor: pointer; font-family: var(--sans); transition: all 0.2s; text-decoration: none;
+    display: inline-block;
+  }
+  .btn-ghost:hover { border-color: var(--gold); color: var(--gold); }
+
+  .hero-scroll {
+    position: absolute; bottom: 2rem; left: 50%; transform: translateX(-50%);
+    display: flex; flex-direction: column; align-items: center; gap: 8px;
+    z-index: 2; animation: fadeUp 0.8s 0.6s ease both;
+  }
+  .hero-scroll span {
+    font-size: 9px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--muted);
+  }
+  .scroll-line {
+    width: 1px; height: 40px;
+    background: linear-gradient(to bottom, var(--gold), transparent);
+    animation: scrollPulse 2s ease infinite;
+  }
+
+  /* ── STATS BAR ── */
+  .stats-bar {
+    background: var(--surface);
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+    display: grid; grid-template-columns: repeat(4, 1fr);
+  }
+  .stat-item {
+    padding: 2rem 2rem;
+    border-right: 1px solid var(--border);
+    text-align: center;
+  }
+  .stat-item:last-child { border-right: none; }
+  .stat-num {
+    font-family: var(--serif); font-size: 38px; font-weight: 300;
+    color: var(--gold); line-height: 1;
+  }
+  .stat-label {
+    font-size: 10px; letter-spacing: 0.18em; text-transform: uppercase;
+    color: var(--muted); margin-top: 6px;
+  }
+
+  /* ── SECTION COMMONS ── */
+  section { padding: 6rem 3rem; }
+  .section-eyebrow {
+    display: flex; align-items: center; gap: 14px; margin-bottom: 1rem;
+  }
+  .section-eyebrow-line { width: 28px; height: 1px; background: var(--gold); }
+  .section-eyebrow-text {
+    font-size: 10px; letter-spacing: 0.25em; text-transform: uppercase; color: var(--gold);
+  }
+  h2 {
+    font-family: var(--serif); font-weight: 300;
+    font-size: clamp(32px, 4vw, 52px); line-height: 1.1;
+    color: var(--cream);
+  }
+  h2 em { font-style: italic; }
+
+  /* ── LISTINGS ── */
+  .listings { background: var(--deep); }
+  .listings-header {
+    display: flex; justify-content: space-between; align-items: flex-end;
+    margin-bottom: 3rem; flex-wrap: wrap; gap: 1rem;
+  }
+  .listings-link {
+    font-size: 11px; letter-spacing: 0.16em; text-transform: uppercase;
+    color: var(--gold); text-decoration: none; border-bottom: 1px solid var(--gold);
+    padding-bottom: 2px;
+  }
+  .listings-grid {
+    display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5px;
+  }
+  .listing-card {
+    background: var(--surface);
+    position: relative; overflow: hidden; cursor: pointer;
+    transition: transform 0.3s ease;
+  }
+  .listing-card:hover { transform: translateY(-4px); }
+  .listing-card:hover .listing-img-overlay { opacity: 0.5; }
+  .listing-card.featured {
+    grid-column: span 2;
+  }
+  .listing-img {
+    height: 260px; position: relative; overflow: hidden;
+  }
+  .listing-card.featured .listing-img { height: 380px; }
+  .listing-img-bg {
+    position: absolute; inset: 0;
+    transition: transform 0.5s ease;
+  }
+  .listing-card:hover .listing-img-bg { transform: scale(1.04); }
+  .listing-img-bg.p1 {
+    background: linear-gradient(145deg, #2c2418 0%, #1e180c 40%, #2a1e0f 100%);
+  }
+  .listing-img-bg.p2 {
+    background: linear-gradient(145deg, #1e2018 0%, #181c10 50%, #242818 100%);
+  }
+  .listing-img-bg.p3 {
+    background: linear-gradient(145deg, #201818 0%, #18100c 50%, #281808 100%);
+  }
+  /* Simulated house shapes */
+  .house-shape {
+    position: absolute; bottom: 0; left: 50%; transform: translateX(-50%);
+    width: 70%; display: flex; flex-direction: column; align-items: center;
+  }
+  .house-roof {
+    width: 0; height: 0;
+    border-left: 80px solid transparent;
+    border-right: 80px solid transparent;
+    border-bottom: 50px solid rgba(201,168,76,0.08);
+  }
+  .house-body {
+    width: 120px; height: 90px;
+    background: rgba(201,168,76,0.06);
+    border: 1px solid rgba(201,168,76,0.12);
+    position: relative;
+  }
+  .house-window {
+    position: absolute; top: 16px;
+    width: 22px; height: 26px;
+    background: rgba(201,168,76,0.12);
+    border: 1px solid rgba(201,168,76,0.15);
+  }
+  .house-window.left { left: 16px; }
+  .house-window.right { right: 16px; }
+  .house-door {
+    position: absolute; bottom: 0; left: 50%; transform: translateX(-50%);
+    width: 24px; height: 36px;
+    background: rgba(201,168,76,0.1);
+    border: 1px solid rgba(201,168,76,0.18);
+    border-radius: 12px 12px 0 0;
+  }
+
+  .listing-img-overlay {
+    position: absolute; inset: 0;
+    background: linear-gradient(to bottom, transparent 30%, rgba(10,9,6,0.85) 100%);
+    transition: opacity 0.3s;
+  }
+  .listing-badge {
+    position: absolute; top: 16px; left: 16px;
+    font-size: 9px; letter-spacing: 0.18em; text-transform: uppercase;
+    background: var(--gold); color: var(--black); padding: 4px 10px; font-weight: 500;
+  }
+  .listing-info { padding: 1.4rem 1.5rem 1.6rem; }
+  .listing-price {
+    font-family: var(--serif); font-size: 22px; color: var(--gold); font-weight: 400;
+  }
+  .listing-name {
+    font-size: 14px; color: var(--cream); margin-top: 4px; font-weight: 400;
+  }
+  .listing-location {
+    font-size: 11px; color: var(--muted); margin-top: 3px; letter-spacing: 0.06em;
+  }
+  .listing-specs {
+    display: flex; gap: 1.2rem; margin-top: 1rem; padding-top: 1rem;
+    border-top: 1px solid var(--border);
+  }
+  .spec {
+    font-size: 11px; color: var(--cream-dim); display: flex; align-items: center; gap: 5px;
+  }
+  .spec-dot { width: 3px; height: 3px; background: var(--gold); border-radius: 50%; }
+
+  /* ── ABOUT ── */
+  .about {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; align-items: center;
+    background: var(--black);
+  }
+  .about-visual {
+    position: relative; height: 520px;
+  }
+  .about-img-main {
+    position: absolute; top: 0; left: 0; right: 3rem; bottom: 3rem;
+    background: linear-gradient(145deg, #201a10 0%, #161008 100%);
+    border: 1px solid var(--border);
+  }
+  .about-img-accent {
+    position: absolute; bottom: 0; right: 0;
+    width: 50%; height: 45%;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    display: flex; flex-direction: column; justify-content: center;
+    align-items: center; gap: 4px; padding: 1.5rem;
+  }
+  .about-accent-num {
+    font-family: var(--serif); font-size: 48px; color: var(--gold); font-weight: 300;
+    line-height: 1;
+  }
+  .about-accent-text {
+    font-size: 10px; letter-spacing: 0.16em; text-transform: uppercase;
+    color: var(--muted); text-align: center;
+  }
+  .about-gold-bar {
+    position: absolute; top: 2rem; right: 2.5rem;
+    width: 3px; height: 60px; background: var(--gold);
+  }
+  /* Interior silhouette in about image */
+  .about-interior {
+    position: absolute; inset: 0.5rem 3.5rem 3.5rem 0.5rem;
+    display: flex; align-items: flex-end; justify-content: center;
+    padding: 2rem;
+  }
+  .interior-elements {
+    width: 100%; display: flex; align-items: flex-end; justify-content: space-around;
+    gap: 8px;
+  }
+  .int-el {
+    background: rgba(201,168,76,0.07);
+    border: 1px solid rgba(201,168,76,0.1);
+  }
+
+  .about-content p {
+    font-size: 15px; line-height: 1.85; color: var(--cream-dim); margin-top: 1.4rem;
+  }
+  .about-values {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 1.2rem; margin-top: 2.2rem;
+  }
+  .value-item {
+    padding: 1.2rem; border: 1px solid var(--border); background: var(--surface);
+  }
+  .value-title {
+    font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase;
+    color: var(--gold); margin-bottom: 4px;
+  }
+  .value-desc { font-size: 12px; color: var(--muted); line-height: 1.6; }
+
+  /* ── PROCESS ── */
+  .process { background: var(--surface); }
+  .process-grid {
+    display: grid; grid-template-columns: repeat(4, 1fr); gap: 0;
+    margin-top: 3rem; border: 1px solid var(--border);
+  }
+  .process-step {
+    padding: 2rem 1.8rem;
+    border-right: 1px solid var(--border);
+    position: relative;
+  }
+  .process-step:last-child { border-right: none; }
+  .step-num {
+    font-family: var(--serif); font-size: 48px; font-weight: 300;
+    color: rgba(201,168,76,0.2); line-height: 1; margin-bottom: 1rem;
+  }
+  .step-title {
+    font-size: 13px; font-weight: 500; color: var(--cream); margin-bottom: 8px;
+    letter-spacing: 0.04em;
+  }
+  .step-desc { font-size: 12px; color: var(--muted); line-height: 1.7; }
+  .step-arrow {
+    position: absolute; top: 2rem; right: -10px;
+    width: 20px; height: 1px; background: var(--gold); z-index: 1;
+  }
+  .step-arrow::after {
+    content: ''; position: absolute; right: 0; top: -3px;
+    border-left: 5px solid var(--gold);
+    border-top: 3px solid transparent;
+    border-bottom: 3px solid transparent;
+  }
+  .process-step:last-child .step-arrow { display: none; }
+
+  /* ── TESTIMONIAL ── */
+  .testimonial {
+    background: var(--deep);
+    text-align: center; padding: 6rem 3rem;
+  }
+  .testimonial-quote {
+    font-family: var(--serif); font-size: clamp(22px, 3vw, 36px);
+    font-weight: 300; font-style: italic; line-height: 1.5;
+    color: var(--cream); max-width: 700px; margin: 2rem auto 0;
+  }
+  .testimonial-attr {
+    margin-top: 2rem; font-size: 11px; letter-spacing: 0.2em;
+    text-transform: uppercase; color: var(--gold);
+  }
+  .quote-mark {
+    font-family: var(--serif); font-size: 80px; color: var(--gold);
+    line-height: 0.6; opacity: 0.4;
+  }
+
+  /* ── CTA ── */
+  .cta-section {
+    background: var(--black);
+    display: grid; grid-template-columns: 1fr 1fr;
+    min-height: 480px;
+  }
+  .cta-content {
+    padding: 5rem 3rem 5rem 3rem;
+    display: flex; flex-direction: column; justify-content: center;
+  }
+  .cta-content h2 { max-width: 380px; }
+  .cta-content p {
+    font-size: 14px; color: var(--cream-dim); line-height: 1.8;
+    margin-top: 1.2rem; max-width: 360px;
+  }
+  .cta-actions { display: flex; gap: 1rem; margin-top: 2.5rem; flex-wrap: wrap; }
+  .cta-form-panel {
+    background: var(--surface);
+    border-left: 1px solid var(--border);
+    padding: 4rem 3rem;
+    display: flex; flex-direction: column; justify-content: center;
+  }
+  .form-title {
+    font-size: 11px; letter-spacing: 0.2em; text-transform: uppercase;
+    color: var(--gold); margin-bottom: 1.8rem;
+  }
+  .form-row { margin-bottom: 1rem; }
+  .form-row label {
+    display: block; font-size: 10px; letter-spacing: 0.14em; text-transform: uppercase;
+    color: var(--muted); margin-bottom: 6px;
+  }
+  .form-row input, .form-row select, .form-row textarea {
+    width: 100%;
+    background: rgba(201,168,76,0.04);
+    border: 1px solid var(--border);
+    color: var(--cream); font-family: var(--sans);
+    font-size: 13px; padding: 10px 14px;
+    outline: none; transition: border-color 0.2s;
+    -webkit-appearance: none;
+  }
+  .form-row input:focus, .form-row select:focus, .form-row textarea:focus {
+    border-color: var(--gold);
+  }
+  .form-row select option { background: #16140f; }
+  .form-row textarea { resize: vertical; min-height: 80px; }
+  .form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+  .form-submit {
+    width: 100%; margin-top: 0.5rem;
+    background: var(--gold); color: var(--black);
+    padding: 13px; font-size: 11px; letter-spacing: 0.18em;
+    text-transform: uppercase; font-weight: 500; border: none;
+    cursor: pointer; font-family: var(--sans); transition: background 0.2s;
+  }
+  .form-submit:hover { background: var(--gold-light); }
+
+  /* ── FOOTER ── */
+  footer {
+    background: var(--deep);
+    border-top: 1px solid var(--border);
+    padding: 3rem 3rem 2rem;
+  }
+  .footer-top {
+    display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 3rem;
+    padding-bottom: 2.5rem; border-bottom: 1px solid var(--border);
+  }
+  .footer-brand p {
+    font-size: 13px; color: var(--muted); line-height: 1.7; margin-top: 1rem; max-width: 260px;
+  }
+  .footer-col-title {
+    font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase;
+    color: var(--gold); margin-bottom: 1rem;
+  }
+  .footer-links { list-style: none; display: flex; flex-direction: column; gap: 0.6rem; }
+  .footer-links a {
+    font-size: 13px; color: var(--muted); text-decoration: none; transition: color 0.2s;
+  }
+  .footer-links a:hover { color: var(--cream); }
+  .footer-bottom {
+    display: flex; justify-content: space-between; align-items: center;
+    padding-top: 1.5rem; flex-wrap: wrap; gap: 1rem;
+  }
+  .footer-copy { font-size: 11px; color: var(--muted); }
+  .footer-lasrera {
+    font-size: 11px; color: rgba(201,168,76,0.5);
+    letter-spacing: 0.08em;
+  }
+
+  /* ── ANIMATIONS ── */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(24px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  @keyframes scrollPulse {
+    0%, 100% { opacity: 0.3; }
+    50% { opacity: 1; }
+  }
+
+  .reveal {
+    opacity: 0; transform: translateY(30px);
+    transition: opacity 0.7s ease, transform 0.7s ease;
+  }
+  .reveal.visible { opacity: 1; transform: translateY(0); }
+  .reveal-delay-1 { transition-delay: 0.1s; }
+  .reveal-delay-2 { transition-delay: 0.2s; }
+  .reveal-delay-3 { transition-delay: 0.3s; }
+
+  /* ── MOBILE ── */
+  @media (max-width: 900px) {
+    nav { padding: 1.2rem 1.5rem; }
+    .nav-links { display: none; }
+    section { padding: 4rem 1.5rem; }
+    h1 { font-size: 38px; }
+    .hero { padding: 0 1.5rem 4rem; }
+    .hero-img-block { width: 100%; clip-path: none; opacity: 0.15; }
+    .stats-bar { grid-template-columns: repeat(2, 1fr); }
+    .stat-item { border-bottom: 1px solid var(--border); }
+    .listings-grid { grid-template-columns: 1fr; }
+    .listing-card.featured { grid-column: span 1; }
+    .about { grid-template-columns: 1fr; }
+    .about-visual { height: 300px; }
+    .process-grid { grid-template-columns: 1fr 1fr; }
+    .cta-section { grid-template-columns: 1fr; }
+    .cta-form-panel { border-left: none; border-top: 1px solid var(--border); }
+    .footer-top { grid-template-columns: 1fr 1fr; gap: 2rem; }
+    .form-grid { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="logo">
+    <span class="logo-main">Adesokan Properties</span>
+    <span class="logo-sub">Otedola Estate · Omole · Lagos</span>
+  </div>
+  <ul class="nav-links">
+    <li><a href="#listings">Properties</a></li>
+    <li><a href="#about">About</a></li>
+    <li><a href="#process">How It Works</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+  <a href="#contact" class="nav-cta">Book a Viewing</a>
+</nav>
+
+<!-- HERO -->
+<section class="hero" id="home">
+  <div class="hero-bg"></div>
+  <div class="hero-pattern"></div>
+  <div class="hero-img-block"></div>
+
+  <div class="hero-eyebrow">
+    <div class="hero-eyebrow-line"></div>
+    <span class="hero-eyebrow-text">Premium Real Estate · Otedola Estate</span>
+  </div>
+
+  <h1>Where Luxury Meets <em>Home.</em></h1>
+
+  <p class="hero-sub">Specialists in premium residential property in Otedola Estate, Omole Phase 2, and the greater Ikeja corridor. Trusted by discerning buyers and investors across Lagos.</p>
+
+  <div class="hero-actions">
+    <a href="#listings" class="btn-primary">View Properties</a>
+    <a href="#contact" class="btn-ghost">Speak with an Agent</a>
+  </div>
+
+  <div class="hero-scroll">
+    <div class="scroll-line"></div>
+    <span>Scroll</span>
+  </div>
+</section>
+
+<!-- STATS -->
+<div class="stats-bar">
+  <div class="stat-item reveal">
+    <div class="stat-num">200+</div>
+    <div class="stat-label">Properties Sold</div>
+  </div>
+  <div class="stat-item reveal reveal-delay-1">
+    <div class="stat-num">15</div>
+    <div class="stat-label">Years in the Market</div>
+  </div>
+  <div class="stat-item reveal reveal-delay-2">
+    <div class="stat-num">₦8B+</div>
+    <div class="stat-label">Transaction Volume</div>
+  </div>
+  <div class="stat-item reveal reveal-delay-3">
+    <div class="stat-num">98%</div>
+    <div class="stat-label">Client Satisfaction</div>
+  </div>
+</div>
+
+<!-- LISTINGS -->
+<section class="listings" id="listings">
+  <div class="listings-header reveal">
+    <div>
+      <div class="section-eyebrow">
+        <div class="section-eyebrow-line"></div>
+        <span class="section-eyebrow-text">Featured Properties</span>
+      </div>
+      <h2>Current <em>Listings</em></h2>
+    </div>
+    <a href="#" class="listings-link">View All Properties →</a>
+  </div>
+
+  <div class="listings-grid reveal">
+    <!-- Card 1 - Featured -->
+    <div class="listing-card featured">
+      <div class="listing-img">
+        <div class="listing-img-bg p1">
+          <div class="house-shape" style="bottom:10%">
+            <div class="house-roof" style="border-left-width:120px;border-right-width:120px;border-bottom-width:70px;"></div>
+            <div class="house-body" style="width:180px;height:130px;">
+              <div class="house-window left"></div>
+              <div class="house-window right"></div>
+              <div class="house-door"></div>
+            </div>
+          </div>
+        </div>
+        <div class="listing-img-overlay"></div>
+        <span class="listing-badge">For Sale</span>
+      </div>
+      <div class="listing-info">
+        <div class="listing-price">₦185,000,000</div>
+        <div class="listing-name">5-Bed Fully Detached Duplex</div>
+        <div class="listing-location">Otedola Estate, Omole Phase 2, Lagos</div>
+        <div class="listing-specs">
+          <span class="spec"><span class="spec-dot"></span>5 Beds</span>
+          <span class="spec"><span class="spec-dot"></span>6 Baths</span>
+          <span class="spec"><span class="spec-dot"></span>BQ</span>
+          <span class="spec"><span class="spec-dot"></span>680 sqm</span>
+          <span class="spec"><span class="spec-dot"></span>C of O</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Card 2 -->
+    <div class="listing-card">
+      <div class="listing-img">
+        <div class="listing-img-bg p2">
+          <div class="house-shape">
+            <div class="house-roof"></div>
+            <div class="house-body">
+              <div class="house-window left"></div>
+              <div class="house-window right"></div>
+              <div class="house-door"></div>
+            </div>
+          </div>
+        </div>
+        <div class="listing-img-overlay"></div>
+        <span class="listing-badge">For Sale</span>
+      </div>
+      <div class="listing-info">
+        <div class="listing-price">₦95,000,000</div>
+        <div class="listing-name">4-Bed Terrace Duplex</div>
+        <div class="listing-location">Omole Phase 1, Ikeja, Lagos</div>
+        <div class="listing-specs">
+          <span class="spec"><span class="spec-dot"></span>4 Beds</span>
+          <span class="spec"><span class="spec-dot"></span>4 Baths</span>
+          <span class="spec"><span class="spec-dot"></span>380 sqm</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Card 3 -->
+    <div class="listing-card">
+      <div class="listing-img">
+        <div class="listing-img-bg p3">
+          <div class="house-shape">
+            <div class="house-roof"></div>
+            <div class="house-body">
+              <div class="house-window left"></div>
+              <div class="house-window right"></div>
+              <div class="house-door"></div>
+            </div>
+          </div>
+        </div>
+        <div class="listing-img-overlay"></div>
+        <span class="listing-badge">To Let</span>
+      </div>
+      <div class="listing-info">
+        <div class="listing-price">₦6,500,000 / yr</div>
+        <div class="listing-name">3-Bed Semi-Detached</div>
+        <div class="listing-location">Magodo Phase 2, Lagos</div>
+        <div class="listing-specs">
+          <span class="spec"><span class="spec-dot"></span>3 Beds</span>
+          <span class="spec"><span class="spec-dot"></span>3 Baths</span>
+          <span class="spec"><span class="spec-dot"></span>280 sqm</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section class="about" id="about">
+  <div class="about-visual reveal">
+    <div class="about-img-main">
+      <div class="about-interior">
+        <div class="interior-elements">
+          <div class="int-el" style="width:30px;height:120px;"></div>
+          <div class="int-el" style="width:60px;height:180px;"></div>
+          <div class="int-el" style="width:80px;height:80px;"></div>
+          <div class="int-el" style="width:40px;height:150px;"></div>
+          <div class="int-el" style="width:25px;height:100px;"></div>
+        </div>
+      </div>
+    </div>
+    <div class="about-img-accent">
+      <div class="about-accent-num">15</div>
+      <div class="about-accent-text">Years serving<br>Lagos property buyers</div>
+    </div>
+    <div class="about-gold-bar"></div>
+  </div>
+  <div class="about-content reveal reveal-delay-1">
+    <div class="section-eyebrow">
+      <div class="section-eyebrow-line"></div>
+      <span class="section-eyebrow-text">About Us</span>
+    </div>
+    <h2>Built on <em>Trust,</em><br>Driven by Results</h2>
+    <p>Adesokan Properties has been connecting serious buyers and investors with premium residential properties in Otedola Estate, Omole Phase 2, and the broader Ikeja corridor for over 15 years.</p>
+    <p>We understand that buying property in Lagos is one of the most significant financial decisions you'll make. Our approach is straightforward — honest advice, verified listings, and professional guidance from first enquiry to key handover.</p>
+    <div class="about-values">
+      <div class="value-item">
+        <div class="value-title">Verified Listings</div>
+        <div class="value-desc">Every property is verified with documentation before it's shown to a client.</div>
+      </div>
+      <div class="value-item">
+        <div class="value-title">Title Checks</div>
+        <div class="value-desc">We conduct due diligence on C of O, Deed of Assignment, and Governor's Consent.</div>
+      </div>
+      <div class="value-item">
+        <div class="value-title">Fair Pricing</div>
+        <div class="value-desc">Transparent pricing with no hidden fees. What we quote is what you pay.</div>
+      </div>
+      <div class="value-item">
+        <div class="value-title">After-Sale Support</div>
+        <div class="value-desc">We stay available after transactions close — not just until the deal is done.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROCESS -->
+<section class="process" id="process">
+  <div class="reveal" style="text-align:center;max-width:500px;margin:0 auto 0;">
+    <div class="section-eyebrow" style="justify-content:center;">
+      <div class="section-eyebrow-line"></div>
+      <span class="section-eyebrow-text">How It Works</span>
+      <div class="section-eyebrow-line"></div>
+    </div>
+    <h2>From <em>Enquiry</em> to Keys</h2>
+  </div>
+  <div class="process-grid reveal">
+    <div class="process-step">
+      <div class="step-num">01</div>
+      <div class="step-title">Initial Consultation</div>
+      <div class="step-desc">Tell us your budget, preferred location, and what matters most. We listen before we recommend.</div>
+      <div class="step-arrow"></div>
+    </div>
+    <div class="process-step">
+      <div class="step-num">02</div>
+      <div class="step-title">Curated Viewings</div>
+      <div class="step-desc">We shortlist properties that genuinely match your brief — no time wasted on unsuitable listings.</div>
+      <div class="step-arrow"></div>
+    </div>
+    <div class="process-step">
+      <div class="step-num">03</div>
+      <div class="step-title">Due Diligence</div>
+      <div class="step-desc">We verify all title documents and handle negotiations to get you the best possible terms.</div>
+      <div class="step-arrow"></div>
+    </div>
+    <div class="process-step">
+      <div class="step-num">04</div>
+      <div class="step-title">Key Handover</div>
+      <div class="step-desc">We coordinate documentation, payment, and key handover — and stay available after completion.</div>
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIAL -->
+<div class="testimonial">
+  <div class="quote-mark">"</div>
+  <p class="testimonial-quote reveal">Adesokan Properties made buying our home in Otedola Estate straightforward. No pressure, no runaround — just honest advice and a smooth process from viewing to keys.</p>
+  <div class="testimonial-attr reveal reveal-delay-1">— Mr. & Mrs. Adeyemi, Otedola Estate Homeowners</div>
+</div>
+
+<!-- CTA / CONTACT -->
+<div class="cta-section" id="contact">
+  <div class="cta-content">
+    <div class="section-eyebrow">
+      <div class="section-eyebrow-line"></div>
+      <span class="section-eyebrow-text">Get In Touch</span>
+    </div>
+    <h2>Find Your <em>Next Home</em></h2>
+    <p>Whether you're buying, selling, or investing — speak directly with our team. We respond to every enquiry within 24 hours.</p>
+    <div class="cta-actions">
+      <a href="tel:+2348000000000" class="btn-primary">Call Us Now</a>
+      <a href="https://wa.me/2348000000000" class="btn-ghost">WhatsApp</a>
+    </div>
+    <div style="margin-top:2rem;font-size:12px;color:var(--muted);line-height:1.8;">
+      <div>📍 Otedola Estate, Omole Phase 2, Ikeja, Lagos</div>
+      <div style="margin-top:4px;">📞 +234 800 000 0000</div>
+      <div style="margin-top:4px;">✉️ info@adesokanproperties.com</div>
+    </div>
+  </div>
+  <div class="cta-form-panel">
+    <div class="form-title">Send an Enquiry</div>
+    <div class="form-grid">
+      <div class="form-row">
+        <label>Full Name</label>
+        <input type="text" placeholder="Your name">
+      </div>
+      <div class="form-row">
+        <label>Phone Number</label>
+        <input type="tel" placeholder="+234">
+      </div>
+    </div>
+    <div class="form-row">
+      <label>Email Address</label>
+      <input type="email" placeholder="your@email.com">
+    </div>
+    <div class="form-row">
+      <label>I'm interested in</label>
+      <select>
+        <option value="">Select an option</option>
+        <option>Buying a property</option>
+        <option>Renting a property</option>
+        <option>Selling my property</option>
+        <option>Property investment advice</option>
+      </select>
+    </div>
+    <div class="form-row">
+      <label>Message (optional)</label>
+      <textarea placeholder="Tell us more about what you're looking for..."></textarea>
+    </div>
+    <button class="form-submit">Send Enquiry →</button>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-top">
+    <div class="footer-brand">
+      <div class="logo">
+        <span class="logo-main">Adesokan Properties</span>
+        <span class="logo-sub">Otedola Estate · Omole · Lagos</span>
+      </div>
+      <p>Trusted real estate specialists serving buyers, sellers, and investors across Otedola Estate, Omole Phase 2, and the Ikeja corridor since 2009.</p>
+    </div>
+    <div>
+      <div class="footer-col-title">Properties</div>
+      <ul class="footer-links">
+        <li><a href="#">For Sale</a></li>
+        <li><a href="#">To Let</a></li>
+        <li><a href="#">Off-Plan</a></li>
+        <li><a href="#">Land</a></li>
+        <li><a href="#">Commercial</a></li>
+      </ul>
+    </div>
+    <div>
+      <div class="footer-col-title">Company</div>
+      <ul class="footer-links">
+        <li><a href="#">About Us</a></li>
+        <li><a href="#">Our Team</a></li>
+        <li><a href="#">Testimonials</a></li>
+        <li><a href="#">Blog</a></li>
+      </ul>
+    </div>
+    <div>
+      <div class="footer-col-title">Legal</div>
+      <ul class="footer-links">
+        <li><a href="#">Privacy Policy</a></li>
+        <li><a href="#">Terms of Use</a></li>
+        <li><a href="#">LASRERA Registered</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <div class="footer-copy">© 2025 Adesokan Properties. All rights reserved.</div>
+    <div class="footer-lasrera">LASRERA Registered · CAC Certified</div>
+  </div>
+</footer>
+
+<script>
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(e => {
+    if (e.isIntersecting) { e.target.classList.add('visible'); }
+  });
+}, { threshold: 0.1 });
+document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+</script>
+</body>
+</html>
